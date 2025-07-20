@@ -11,7 +11,7 @@ services:
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
     networks:
       - app-network
-      
+
   mongodb:
     image: mongo:latest // 4.4.29
     container_name: mongo_service
@@ -25,7 +25,7 @@ services:
       - ./mongo_data:/data/db
     networks:
       - app-network
-      
+
   nginx-proxy-manager:
     image: jc21/nginx-proxy-manager:latest
     container_name: nginx_proxy
@@ -39,7 +39,7 @@ services:
       - ./npm_letsencrypt:/etc/letsencrypt
     networks:
       - app-network
-      
+
   postgres:
     image: postgres:latest
     container_name: postgres_service
@@ -52,7 +52,7 @@ services:
       - ./postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
-      
+
   n8n:
     image: n8nio/n8n:latest
     container_name: n8n
@@ -84,7 +84,7 @@ services:
       - postgres
     networks:
       - app-network
-      
+
 mysql:
     image: mysql:5.7
     container_name: mysql
@@ -100,7 +100,7 @@ mysql:
       - ./mysql_data:/var/lib/mysql
     networks:
       - app-network
-      
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -112,14 +112,15 @@ mysql:
       - mysql
     networks:
       - app-network
-      
+ 
 volumes:
   redis_data:
   mongo_data:
   npm_data:
   npm_letsencrypt:
   postgres_data:
-  
+  mysql_data:
+
 networks:
   app-network:
     external: true
